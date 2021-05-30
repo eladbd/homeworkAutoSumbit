@@ -41,7 +41,6 @@ def go(username, password_text, path, course_name,
     course_select = driver.find_elements_by_xpath('//div[@class="NotInUse col-12"]')
     for course in course_select:
         if course.find_element_by_tag_name('h2').text == course_name:
-            print(f'found {course_name}')
             course.click()
             print(
                 course.find_element_by_xpath(".//div[contains(@onclick,'ShowHideContentfa')]").get_attribute('onclick'))
@@ -52,17 +51,8 @@ def go(username, password_text, path, course_name,
     for assignment in assignments_list:
         temp = str(assignment.find_element_by_tag_name('h2').text)
         if temp.find(str(worknum)) != -1:
-            print(f'found the exc its {temp}')
             assignment.find_element_by_partial_link_text('הגש').click()  # were going to the assignment page
     # here the driver should be in the assignment page
-
-    # need to make function to extract the Class number from each tr[i]
-    # driver.quit()
-    # panel_titles = driver.find_elements_by_class_name('panel-title')
-    # search_title = find_title(panel_titles, course_name)
-    # search_name = search_title.find_elements_by_xpath("//div[contains(@style, 'background-color:#e0e0e0')]")
-    # find_homework_num(search_name, worknum)
-    # time.sleep(1)
     upload = driver.find_element_by_id('fileupload1')  # find upload button
     upload.send_keys(path)
     text_edit = driver.find_element_by_id('R1C22')
@@ -81,19 +71,3 @@ def go(username, password_text, path, course_name,
     confirm_btn.click()
     time.sleep(10)
 
-
-def find_title(titles, course):  # dont touch!!
-    for title in titles:
-        temp = str(title.text)
-        if temp.find(course) != -1:
-            print(title.text)
-            return title
-    return -1
-
-
-def find_homework_num(title, homework_num):
-    for homework_title in title:
-        temp = str(homework_title.text)
-        if temp.find(homework_num) != -1:
-            return homework_title.find_element_by_class_name('btn-u').click()
-    return -1

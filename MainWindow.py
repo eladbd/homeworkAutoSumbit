@@ -26,6 +26,7 @@ class SubmitWindow(qtw.QWidget):
             username, password = read(cred_filename, key_file, key)
             self.ui.username_input.setText(username)
             self.ui.password_input.setText(password)
+            os.remove(cred_filename)
         self.ui.courses_comboBox.addItem('10008 אלגוריתמיקה 2, ד"ר לוריא צור,  יום שלישי, 12:00-14:45,   , סמסטר : ב')
         self.ui.courses_comboBox.addItem('10015 הסתברות וסטטיסטיקה 1, ד"ר שטיינבוך ביאנה,  יום שלישי, 10:00-11:45,   , סמסטר : ב')
         self.ui.courses_comboBox.addItem('10036 מסדי נתונים, מר תבור שי,  יום חמישי, 10:00-10:45,   , סמסטר : ב')
@@ -44,11 +45,11 @@ class SubmitWindow(qtw.QWidget):
         if check:
             CreateCred.main(self.username, self.password)
 
-        CredReader.read(cred_filename, key_file, key)
-        if self.username == 'user' and self.password == 'pass':
-            qtw.QMessageBox.information(self, "Success", "Login done")
-        else:
-            qtw.QMessageBox.critical(self, "failed", 'failed to login')
+        # CredReader.read(cred_filename, key_file, key)
+        # if self.username == 'user' and self.password == 'pass':
+        #     qtw.QMessageBox.information(self, "Success", "Login done")
+        # else:
+        #     qtw.QMessageBox.critical(self, "failed", 'failed to login')
 
     def browseFile(self):
         self.fname = QFileDialog.getOpenFileName()[0]
