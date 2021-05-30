@@ -1,7 +1,8 @@
 __author__ = "Elad Ben David"
 
+import sys
 import time
-
+import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
@@ -23,12 +24,7 @@ def go(username, password_text, path, course_name,
     #     time.sleep(2)
     #     password_error = driver.find_element_by_id('loginError')
     #     password_error = driver.find_element_by_xpath('//div[@id="loginError"]')
-    #     first = 'חובה למלא משתמש תקף וסיסמה (קוד 5)  שים לב, זוהי כניסת סטודנט'
-    #     second = 'סיסמה קצרה מידי (קוד 1)'
-    #     third = 'חובה למלא משתמש תקף וסיסמה(קוד 8)'
-    #     print(password_error.text)
-    #     if str(password_error.text) == first or str(password_error.text) == second or str(
-    #             password_error.text) == third:  # need to be fixed
+    #     if password_error:
     #         to_return = -1
     #         queue.put(to_return)
     #         driver.quit()

@@ -9,6 +9,7 @@ from auto_submit import Ui_Form
 from PyQt5.QtWidgets import QFileDialog
 from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc
+import queue
 
 cred_filename = 'CredFile.ini'
 key_file = 'key.key'
@@ -23,10 +24,13 @@ class SubmitWindow(qtw.QWidget):
         self.cred = Credentials()
         # self.cred.create_cred()
         if (os.path.exists('CredFile.ini')):
-            username, password = read(cred_filename, key_file, key)
-            self.ui.username_input.setText(username)
-            self.ui.password_input.setText(password)
-            os.remove(cred_filename)
+            try:
+                username, password = read(cred_filename, key_file, key)
+                self.ui.username_input.setText(username)
+                self.ui.password_input.setText(password)
+                os.remove(cred_filename)
+            except:
+                pass
         self.ui.courses_comboBox.addItem('10008 אלגוריתמיקה 2, ד"ר לוריא צור,  יום שלישי, 12:00-14:45,   , סמסטר : ב')
         self.ui.courses_comboBox.addItem('10015 הסתברות וסטטיסטיקה 1, ד"ר שטיינבוך ביאנה,  יום שלישי, 10:00-11:45,   , סמסטר : ב')
         self.ui.courses_comboBox.addItem('10036 מסדי נתונים, מר תבור שי,  יום חמישי, 10:00-10:45,   , סמסטר : ב')
@@ -56,8 +60,8 @@ class SubmitWindow(qtw.QWidget):
         self.ui.file_path_text.setText(self.fname)
 
     def launch_selenium_thread(self):
-        t = threading.Thread(target=self.submitForm)
-        t.start()
+        self.t = threading.Thread(target=self.submitForm)
+        self.t.start()
 
     def submitForm(self):
         # q = queue.Queue()
@@ -65,10 +69,9 @@ class SubmitWindow(qtw.QWidget):
                           self.ui.courses_comboBox.currentText(), self.ui.assignment_number_input.text())
         # result = q.get()
         # if result == -1: # need to fix
-        #     password_error = QMessageBox()
-        #     password_error.setText('Username or password is invalid')
-        #     password_error.setIcon(QMessageBox.Critical)
-        #     password_error.exec_()
+        #     # self.some()
+        #     # self.thread
+        #     qtw.QMessageBox.critical(self,"Password failure","Seems that the password or username is incorrect please fix.")
         # elif result == -2:
         #     course_error = QMessageBox()
         #     course_error.setText('No such assignment')
