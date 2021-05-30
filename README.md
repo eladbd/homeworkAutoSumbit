@@ -11,7 +11,8 @@ MainWindow.py contains the whole class of the GUI and seleniumScript.py contains
 
 CreateCred.py and CredReader.py are not my work i took it from GFG and adjusted it for my work as i want passwords to be save on the user computer with base security so no one can actually read the password from the file without the right key.
 
-![‏‏AutoSubmitGui](https://user-images.githubusercontent.com/59573087/120122688-f1342d00-c1b2-11eb-8bed-0ffc71503632.PNG)
+![‏‏AutoSubmitGui](https://user-images.githubusercontent.com/59573087/120122947-c519ab80-c1b4-11eb-9071-ec8bedb57921.PNG)
+
 
 So as you can see this is the current GUI window.
 
