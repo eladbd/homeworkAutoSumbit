@@ -11,7 +11,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(645, 420)
+        Form.resize(582, 406)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("D:/תמונות/CollegeLogo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        Form.setWindowIcon(icon)
         Form.setAutoFillBackground(False)
         self.formLayout = QtWidgets.QFormLayout(Form)
         self.formLayout.setObjectName("formLayout")
@@ -110,9 +113,9 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Form.setWindowTitle(_translate("Form", "SubmitTool"))
         self.hello_label.setText(_translate("Form", "Hey,\n"
-"This is a auto submitter tool for Azrieli college\n"
+"This is auto submit tool for Azrieli college\n"
 "Enjoy!\n"
 ""))
         self.username_label.setText(_translate("Form", "Username"))
