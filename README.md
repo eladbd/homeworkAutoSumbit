@@ -18,3 +18,10 @@ So as you can see this is the current GUI window.
 
 If the user want to keep hes username and password for next assignments he just need to click on the 'Save for later' checkBox.
 **once the checkBox isnt clicked the username and password file will be deleted.
+
+Link for the installer:
+https://mega.nz/file/6PwkyZoL#8P_8NpJIN0Iwy9zWnvUdRp6JfZ6VNO1dHdyBp6JWsfY
+
+# as for now the program doesnt check if your username or password is valid or even if u have the assignment number that u entered.
+#WILL BE ADDED ASAP!
+Have fun.
