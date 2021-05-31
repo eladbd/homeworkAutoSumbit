@@ -3,14 +3,22 @@ __author__ = "Elad Ben David"
 import sys
 import time
 import os
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from configparser import ConfigParser
+
+config = ConfigParser()
+config.read("chromepath.ini")
+CHROME_DRIVER_PATH = config.get("chromedriver", "path")
+
+
+# chrome_path = 'C:\Program Files\chromedriver.exe'
 
 
 def go(username, password_text, path, course_name,
        worknum):  # need to receive username,password,file path to upload, desired course, desired homework num
-    chrome_path = 'C:\Program Files\chromedriver.exe'
-    driver = webdriver.Chrome(chrome_path)
+    driver = webdriver.Chrome(resource_path(CHROME_DRIVER_PATH))
     website = 'https://yedion.jce.ac.il/yedion/fireflyweb.aspx'
     driver.get(website)
     email = driver.find_element_by_xpath('//*[@id="R1C1"]')
@@ -59,11 +67,19 @@ def go(username, password_text, path, course_name,
     write_no.send_keys('לא')
     write_no.send_keys(Keys.RETURN)
     time.sleep(5)
-    submit_btn = driver.find_element_by_id('btnNext') # last button to send
+    submit_btn = driver.find_element_by_id('btnNext')  # last button to send
     submit_btn.click()
     confirm_btn = driver.find_element_by_xpath('//*[@id="modalProcessAction"]')
+    time.sleep(1)
     confirm_btn.click()
     time.sleep(2)
     driver.quit()
     return
 
+
+def resource_path(relative_path: str) -> str:
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.dirname(__file__)
+    return os.path.join(base_path, relative_path)
