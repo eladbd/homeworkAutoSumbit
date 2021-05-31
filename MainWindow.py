@@ -1,7 +1,8 @@
+__author__ = "Elad Ben David"
+
 import os
 import threading
 import seleniumScript
-import CredReader
 from CredReader import read
 import CreateCred
 from CreateCred import Credentials
@@ -9,7 +10,6 @@ from auto_submit import Ui_Form
 from PyQt5.QtWidgets import QFileDialog
 from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc
-import queue
 
 cred_filename = 'CredFile.ini'
 key_file = 'key.key'
@@ -22,7 +22,6 @@ class SubmitWindow(qtw.QWidget):
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.cred = Credentials()
-        # self.cred.create_cred()
         if (os.path.exists('CredFile.ini')):
             try:
                 username, password = read(cred_filename, key_file, key)
@@ -32,12 +31,15 @@ class SubmitWindow(qtw.QWidget):
             except:
                 pass
         self.ui.courses_comboBox.addItem('10008 אלגוריתמיקה 2, ד"ר לוריא צור,  יום שלישי, 12:00-14:45,   , סמסטר : ב')
-        self.ui.courses_comboBox.addItem('10015 הסתברות וסטטיסטיקה 1, ד"ר שטיינבוך ביאנה,  יום שלישי, 10:00-11:45,   , סמסטר : ב')
+        self.ui.courses_comboBox.addItem(
+            '10015 הסתברות וסטטיסטיקה 1, ד"ר שטיינבוך ביאנה,  יום שלישי, 10:00-11:45,   , סמסטר : ב')
         self.ui.courses_comboBox.addItem('10036 מסדי נתונים, מר תבור שי,  יום חמישי, 10:00-10:45,   , סמסטר : ב')
         self.ui.courses_comboBox.addItem('10040 מערכות הפעלה, ד"ר שפנייר אסף,  יום ראשון, 09:00-11:45,   , סמסטר : ב')
         self.ui.courses_comboBox.addItem("10040 מערכות הפעלה, גב' באש תמר,  יום חמישי, 12:00-14:45,   , סמסטר : ב")
-        self.ui.courses_comboBox.addItem('10072 פיסיקה 2 - חשמל ומגנטיות, ד"ר כהנא אביב,  יום שני, 09:00-11:45,   , סמסטר : ב')
-        self.ui.courses_comboBox.addItem('10077 מבוא לתכנות מדעי, ד"ר חסין יהודה,  יום רביעי, 09:00-09:45,   , סמסטר : ב')
+        self.ui.courses_comboBox.addItem(
+            '10072 פיסיקה 2 - חשמל ומגנטיות, ד"ר כהנא אביב,  יום שני, 09:00-11:45,   , סמסטר : ב')
+        self.ui.courses_comboBox.addItem(
+            '10077 מבוא לתכנות מדעי, ד"ר חסין יהודה,  יום רביעי, 09:00-09:45,   , סמסטר : ב')
         self.ui.submit_button.clicked.connect(self.checkLogin)
         self.ui.browse_file_button.clicked.connect(self.browseFile)
         self.ui.submit_button.clicked.connect(self.launch_selenium_thread)

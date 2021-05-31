@@ -11,7 +11,6 @@ def go(username, password_text, path, course_name,
        worknum):  # need to receive username,password,file path to upload, desired course, desired homework num
     chrome_path = 'C:\Program Files\chromedriver.exe'
     driver = webdriver.Chrome(chrome_path)
-    action = webdriver.ActionChains(driver)
     website = 'https://yedion.jce.ac.il/yedion/fireflyweb.aspx'
     driver.get(website)
     email = driver.find_element_by_xpath('//*[@id="R1C1"]')
@@ -38,8 +37,7 @@ def go(username, password_text, path, course_name,
     for course in course_select:
         if course.find_element_by_tag_name('h2').text == course_name:
             course.click()
-            print(
-                course.find_element_by_xpath(".//div[contains(@onclick,'ShowHideContentfa')]").get_attribute('onclick'))
+            # print(course.find_element_by_xpath(".//div[contains(@onclick,'ShowHideContentfa')]").get_attribute('onclick'))
             break
     hidden_course = driver.find_element_by_xpath('//div[@style="display: inherit;"]')
     assignments_list = hidden_course.find_elements_by_xpath(
@@ -65,5 +63,7 @@ def go(username, password_text, path, course_name,
     submit_btn.click()
     confirm_btn = driver.find_element_by_xpath('//*[@id="modalProcessAction"]')
     confirm_btn.click()
-    time.sleep(10)
+    time.sleep(2)
+    driver.quit()
+    return
 

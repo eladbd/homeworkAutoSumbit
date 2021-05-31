@@ -87,7 +87,7 @@ class Credentials():
 
         except PermissionError:
             os.remove(self.__key_file)
-            print("A Permission error occurred.\n Please re run the script")
+            # print("A Permission error occurred.\n Please re run the script")
             sys.exit()
 
         self.__username = ""
@@ -103,19 +103,19 @@ def main(username,password):
     # Accepting credentials
     creds.username = username
     creds.password = password
-    print("Enter the epiry time for key file in minutes, [default:Will never expire]")
+    # print("Enter the epiry time for key file in minutes, [default:Will never expire]")
     creds.expiry_time = -1
 
     # calling the Credit
     creds.create_cred()
-    print("**" * 20)
-    print("Cred file created successfully at {}"
-          .format(time.ctime()))
-    print(f'check {creds.username}')
+    # print("**" * 20)
+    # print("Cred file created successfully at {}"
+    #       .format(time.ctime()))
+    # print(f'check {creds.username}')
     if not (creds.expiry_time == -1):
         os.startfile('expire.py')
 
-    print("**" * 20)
+    # print("**" * 20)
 
 
 # if __name__ == "__main__":
